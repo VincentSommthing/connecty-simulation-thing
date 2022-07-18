@@ -125,8 +125,8 @@ function setup() {
     
     createCanvas(windowWidth, windowHeight);
     
-    background(10);
-    bodyStyle.backgroundColor = 10;
+    background(0);
+    bodyStyle.backgroundColor = 0;
     
     let middleX = width/2;
     let middleY = height/2;
@@ -145,7 +145,7 @@ gravitySlider.oninput = function() {
 };
 
 function draw() {
-    background(10);
+    background(0);
     p1.reset();
     p2.reset();
     

@@ -26,7 +26,7 @@ var Particle = function(x,y,m) {
     this.m = m;
 };
 Particle.prototype.display = function() {
-    stroke(0);
+    stroke(255);
     strokeWeight(8);
     point(this.s.x,this.s.y);
 };
@@ -125,8 +125,8 @@ function setup() {
     
     createCanvas(windowWidth, windowHeight);
     
-    background(255);
-    bodyStyle.backgroundColor = 255;
+    background(10);
+    bodyStyle.backgroundColor = 10;
     
     let middleX = width/2;
     let middleY = height/2;
@@ -145,7 +145,7 @@ gravitySlider.oninput = function() {
 };
 
 function draw() {
-    background(255);
+    background(10);
     p1.reset();
     p2.reset();
     

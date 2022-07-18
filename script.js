@@ -1,5 +1,6 @@
 var dt = 0.1;
 var mouseAttraction = 0.5;
+var start = false;
 
 var lengthSlider = document.getElementById("lengthSlider");
 var gravitySlider = document.getElementById("gravitySlider");
@@ -121,6 +122,7 @@ var p2;
 var obj;
 
 function setup() {
+    noLoop();
     bodyStyle = document.body.style;
     
     createCanvas(windowWidth, windowHeight);
@@ -133,6 +135,10 @@ function setup() {
     p1 = new Particle(middleX,middleY,1);
     p2 = new Particle(middleX,middleY + Number(lengthSlider.value),1);
     obj = new Connector(p1,p2);
+}
+
+function mouseMoved() {
+    loop();
 }
 
 lengthSlider.oninput = function() {

@@ -1,15 +1,11 @@
-var dt = 0.1;
-var mouseAttraction = 0.5;
+var mouseAttraction = 5.0;
 var start = false;
+
+var prevDeltaTime;
+var dt;
 
 var lengthSlider = document.getElementById("lengthSlider");
 var gravitySlider = document.getElementById("gravitySlider");
-
-function sq(x) {
-    return x*x;
-}
-
-var dtsq = sq(dt);
 
 var Particle = function(x,y,m) {
     this.s = {
@@ -31,7 +27,7 @@ Particle.prototype.display = function() {
     strokeWeight(8);
     point(this.s.x,this.s.y);
 };
-Particle.prototype.update = function() {
+Particle.prototype.update = function(dt) {
     let x = this.s.x;
     let y = this.s.y;
     let x0 = this.s0.x;
@@ -39,8 +35,8 @@ Particle.prototype.update = function() {
     let ax = this.f.x/this.m;
     let ay = this.f.y/this.m;
     
-    let x1 = 2*x - x0 + ax*dtsq;
-    let y1 = 2*y - y0 + ay*dtsq;
+    let x1 = 2*x - x0 + ax*sq(dt);
+    let y1 = 2*y - y0 + ay*sq(dt);
     
     this.s0 = {
         x:x,
@@ -151,6 +147,10 @@ gravitySlider.oninput = function() {
 };
 
 function draw() {
+    dt = deltaTime > prevDeltaTime*2 ? prevDeltaTime : deltaTime;
+    dt /= 1000;
+    if(!start) {start=true; dt=0}
+    
     background(0);
     p1.reset();
     p2.reset();
@@ -167,8 +167,8 @@ function draw() {
     
     obj.calculateStuff();
     
-    p1.update();
-    p2.update();
+    p1.update(dt);
+    p2.update(dt);
     obj.update();
     obj.display();
     
@@ -177,6 +177,8 @@ function draw() {
     strokeWeight(3);
     stroke(0, 179, 255,constrain(d,0,255));
     line(p1.s.x,p1.s.y,mouseX,mouseY);
+
+    prevDeltaTime = deltaTime;
 }
 
 function windowResized() {

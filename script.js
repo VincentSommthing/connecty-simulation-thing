@@ -1,4 +1,4 @@
-var mouseAttraction = 5.0;
+var mouseAttraction = 15.0;
 var start = false;
 
 var prevDeltaTime;

@@ -15,9 +15,12 @@
                 background-color: black;
             }
             .slidecontainer {
-                position:absolute;
+                position:fixed;
                 z-index:2;
-                width:300px;
+                left:calc(calc(100% - min(calc(3in + 20px), 100%)) / 2.0);
+                width:min(3in, calc(100% - 20px));
+                padding:10px;
+                line-height:0;
             }
             .slider {
                 width:100%;
@@ -28,6 +31,9 @@
             }
         </style>
     </head>
+    <!-- https://stackoverflow.com/questions/27855154/website-elements-and-fonts-are-too-small-in-mobile-devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <body>
         <div class="slidecontainer">
             <p>Length:</p>
